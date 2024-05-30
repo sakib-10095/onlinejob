@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
- 
+  {% block title %}
   <title>Signup Page</title>
-
+  {% endblock title %}
 
   <style>
     body {
@@ -67,7 +67,12 @@
 <body>
 
 <div class="login-container div-decoretor">
+  {% include "message.html" %}
+
     <h2>Login</h2>
+
+    
+
   <form action="#" method="POST" id="loginForm">
     {% csrf_token %}
     <label for="username">Username:</label>
@@ -78,7 +83,7 @@
 
     <button type="submit">Login</button><br><br>
     <div>
-    <a href="">i don't have account</a>
+    <a href="{% url "signupPage" %}">i don't have account</a>
     </div>
     <br>
     <div>

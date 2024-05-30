@@ -8,3 +8,8 @@ class customUser_display(admin.ModelAdmin):
     
 
 admin.site.register(customUser,customUser_display)
+admin.site.register(addjob_model)
+admin.site.register(recruiterProfile)
+admin.site.register(jobseekerProfile)
+
+

@@ -1,0 +1,17 @@
+
+{% if messages %}
+{% for message in messages %}
+{% if message.tags == "success"%}
+<span style="color: blue;">{{ message }}</span>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+
+            {% if messages %}
+            {% for message in messages %}
+            {% if message.tags == "error"%}
+            <span style="color: red;">{{ message }}</span>
+            {% endif %}
+            {% endfor %}
+            {% endif %}

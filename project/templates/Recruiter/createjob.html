@@ -1,0 +1,72 @@
+{% extends "dashboard.html" %}
+
+{% block content %}
+    {% block title %}
+        <title>Created job</title>
+    {% endblock title %}
+    
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <style>
+            #customers {
+                font-family: Arial, Helvetica, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            #customers td, #customers th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+            #customers tr:hover {background-color: #ddd;}
+
+            #customers th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #04AA6D;
+                color: white;
+            }
+            h2 {
+                background-color: #007bff; /* Blue background */
+                color: #ffffff; /* White font color */
+                padding: 20px; /* Add padding for better appearance */
+                border-radius: 5px; /* Optional: Add rounded corners */
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+    <br><br>
+    <h2>Created Job</h2>
+
+    <table id="customers">
+        <tr>
+            <th>Serial No.</th>
+            <th>Job Title</th>
+            <th>Company</th>
+            <th>Location</th>
+            <th>Action</th>
+        </tr>
+       
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <a href="">Edit</a>
+                <a href="">Delete</a>
+                <a href="">Aplicant</a>
+            </td>
+        </tr>
+    </table>
+
+    </body>
+    </html>
+
+{% endblock content %}

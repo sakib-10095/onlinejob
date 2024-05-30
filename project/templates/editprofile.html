@@ -1,0 +1,128 @@
+{% extends "dashboard.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% block title %}
+<title>Update Profile</title>
+{% endblock title %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+    .form-container {
+        max-width: 600px;
+        margin: 50px auto;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    label {
+        display: block;
+        font-weight: bold;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+    input[type="file"] {
+        margin-top: 5px;
+    }
+    .button-container {
+        text-align: center;
+    }
+    .button {
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #038b;
+        color: white;
+        width: 100%;
+
+    }
+    h2 {
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #0498db; 
+        color: white;
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+    <div class="form-container">
+        <form id="{{lorloop.counter}}" action="/editprofilePage/{{i.id}}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2>Update Profile</h2>
+
+            {% include "message.html" %}
+
+           
+            <br>
+            <br>
+
+
+            <div class="form-group">
+                <label for="firstname">First Name:</label>
+                <input type="text" id="first_name" name="first_name" value="{{user.first_name}}" required>
+            </div>
+            <div class="form-group">
+                <label for="lastname">Last Name:</label>
+                <input type="text" id="last_name" name="last_name" value="{{user.last_name}}" required>
+            </div>
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" value="{{user.username}}" required readonly>
+            </div>
+            <div class="form-group">
+                <label for="display_name">Display Name:</label>
+                <input type="text" id="display_name" name="display_name" value="{{user.display_name}}" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" value="{{user.email}}" required readonly>
+            </div>
+            <div class="form-group">
+                <label for="profile_Picture">Profile Picture:</label>
+                <input type="file" id="profile_Picture" name="profile_picture">
+            </div>
+            {% if user.user_type == "jobseeker" %}
+            <div class="form-group">
+                <label for="skill">Skills:</label>
+                <textarea id="skill" name="skill" rows="4"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="resume">Upload Resume(CV):</label>
+                <input type="file" id="resume" name="resume" required>
+            </div>
+            {% endif %}
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" value="" required>
+            </div>
+            <div class="button-container">
+                <button type="submit" class="button">Update Profile</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
+{% endblock content %}

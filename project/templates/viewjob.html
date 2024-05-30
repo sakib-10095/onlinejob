@@ -1,0 +1,45 @@
+{% extends "dashboard.html" %}
+
+
+{% block content %}
+
+{% block title %}
+<title>view job Page</title>
+{% endblock title %}
+
+<section class="job-listings"> 
+    
+    <h2 style="color: white">Latest Job Listings</h2> 
+    <ul> 
+        
+    {% for i in job %}
+        
+        <li> 
+            <h3>{{i.jobTitle}}</h3> 
+            <p style="font-size: 16px;"><b style="color: blue">Company:</b> {{i.companyName}}</p> 
+            <p style="font-size: 16px;"><b style="color: blue">Location:</b> {{i.location}}</p> 
+            <p style="font-size: 16px;"><b style="color: blue">Description:</b> {{i.description}}</p>
+            <p style="font-size: 16px;"><b style="color: blue">Job Creator:</b> {{i.job_creator}}</p> 
+            <p style="font-size: 16px;"><b style="color: blue">Creat Time:</b> {{i.creat_time}}</p> 
+            <p style="font-size: 16px;"><b style="color: blue">Update Time:</b> {{i.update_time}}</p> 
+
+            {% if user.user_type == "jobseeker" %}
+           
+            <a href="">Apply Now</a> 
+            {% endif %}
+
+            {% if user.user_type == "recruiter" and user.id == i.job_creator.id %}
+
+            <a href="{% url "editPage" i.id%}">Edit</a> 
+            <a href="{% url "deletePage" i.id %}">Delete</a>
+            {% endif %}
+
+        </li>
+        {% endfor %}
+
+    </ul> 
+    
+</section> 
+
+
+{% endblock content %}
