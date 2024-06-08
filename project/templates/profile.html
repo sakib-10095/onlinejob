@@ -106,10 +106,10 @@
 
 
       <a href="{% url "editprofilePage" %}" class="btn">Edit Profile</a>
-      <a href="" class="btn">Change Password</a>
+      <a href="{% url "changePassword" %}" class="btn">Change Password</a>
 
       {% if user.user_type == "recruiter" %}
-      <a href="" class="btn">Created Job</a>
+      <a href="{% url "createdjob" %}" class="btn">Created Job</a>
       {% endif %}
 
       {% if request.user.user_type == "jobseeker" %}
@@ -117,7 +117,7 @@
       <a href="{{request.user.jobseeker_Profile.resume.url}}" class="btn" target="_blank">View Resume</a>
       {% endif %}
       
-      <a href="" class="btn">Aplied Job</a>
+      <a href="{% url "Apliedjob" %}" class="btn">Aplied Job</a>
       {% endif %}
 
     </div>

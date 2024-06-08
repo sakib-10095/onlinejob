@@ -25,7 +25,7 @@
 
             {% if user.user_type == "jobseeker" %}
            
-            <a href="">Apply Now</a> 
+            <a href="{% url "applyPage" i.id %}">Apply Now</a> 
             {% endif %}
 
             {% if user.user_type == "recruiter" and user.id == i.job_creator.id %}

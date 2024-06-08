@@ -58,30 +58,35 @@
         </style>
     </head>
     <body>
+        {% for i in job %}
+                
       
         <div class="container">
             <h2>Applicant Details</h2>
             
+            
             <div class="details">
-                
+              
                 <div class="detail">
-                    <label style="background-color: #04AA6D; color: #ffffff;">Applicant Name:</label>
-                    <span></span>
+                    <label style="color: #2980b9;">Applicant Name: </label>
+                    <span>{{i.aplicant}}</span>
                 </div>
                 <div class="detail">
-                    <label style="background-color: #04AA6D; color: #ffffff;">Job Title:</label>
-                    <span></span>
+                    <label style="color: #2980b9;">Job Title:</label>
+                    <span>{{i.job.jobTitle}}</span>
                 </div>
                 <div class="detail">
-                    <label style="background-color: #04AA6D; color: #ffffff;">Resume:</label>
-                    <span><a href="" target="_blank">View Resume</a></span>
+                    <label style="color: #2980b9;">Resume:</label>
+                    <span><a href="/{{i.apply_resume}}" target="_blank">View Resume</a></span>
                 </div>
                 <div class="detail">
-                    <label style="background-color: #04AA6D; color: #ffffff;">Skills:</label>
-                    <span></span>
+                    <label style="color: #2980b9;">Skills:</label>
+                    <span>{{i.skills}}</span>
                 </div>
+               
             </div>
         </div>
+        {% endfor %}
     </body>
   
 

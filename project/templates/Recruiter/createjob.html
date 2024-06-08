@@ -52,18 +52,22 @@
             <th>Location</th>
             <th>Action</th>
         </tr>
-       
+        {% for i in job %}
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+           
+            <td>{{forloop.counter}}</td>
+            <td>{{i.jobTitle}}</td>
+            <td>{{i.companyName}}</td>
+            <td>{{i.location}}</td>
+            
             <td>
                 <a href="">Edit</a>
                 <a href="">Delete</a>
-                <a href="">Aplicant</a>
+                <a href="{% url "Aplicant_view" i.id %}">Aplicant</a>
             </td>
+          
         </tr>
+        {% endfor %}
     </table>
 
     </body>

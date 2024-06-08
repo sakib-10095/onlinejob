@@ -33,7 +33,15 @@ urlpatterns = [
     path('updatePage/<str:id>', views.updatePage, name="updatePage"),
     path('profilePage/', views.profilePage, name="profilePage"),
     path('editprofilePage/', views.editprofilePage, name="editprofilePage"),
+    path('changePassword/', views.changePassword, name="changePassword"),
+    path('applyPage/<str:id>', views.applyPage, name="applyPage"),
+    path('createdjob/', views.createdjob, name="createdjob"),
+    path('Apliedjob/', views.Apliedjob, name="Apliedjob"),
+    path('Aplicant_view/<str:id>', views.Aplicant_view, name="Aplicant_view"),
 
+
+
+    
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,

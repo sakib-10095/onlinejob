@@ -46,3 +46,14 @@ class jobseekerProfile(models.Model):
         return self.user.display_name
     
 
+class job_Apply_model(models.Model):
+    job=models.ForeignKey(addjob_model,on_delete=models.CASCADE,null=True)
+    aplicant=models.ForeignKey(customUser,on_delete=models.CASCADE,null=True)
+    skills=models.CharField(max_length=120,null=True)
+    salary=models.CharField(max_length=120,null=True)
+    apply_resume=models.FileField(upload_to="media/apply_resume",null=True)
+
+    def __str__(self):
+        return self.job.jobTitle
+
+

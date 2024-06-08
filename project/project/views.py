@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from myapp.models import *
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
@@ -134,7 +134,6 @@ def editprofilePage(request):
         resume=request.FILES.get("resume")
         password=request.POST.get("password")
 
-
         if not check_password(password,user.password):
             messages.error(request,"password not match")
             return redirect("editprofilePage")
@@ -157,3 +156,62 @@ def editprofilePage(request):
     
     return render(request,"editprofile.html")
 
+def changePassword(request):
+    user=request.user
+    if request.method=="POST":
+        current_Password=request.POST.get("current_Password")
+        new_Password=request.POST.get("new_Password")
+        confirm_Password=request.POST.get("confirm_Password")
+
+        if not check_password(current_Password, user.password):
+            messages.error(request,"Password not match")
+            return redirect("changePassword")
+        
+        if new_Password !=confirm_Password:
+            messages.error(request,"new_Password & confirm_Password not match")
+            return redirect("changePassword")
+        
+        else:
+            user.set_password(new_Password)
+            user.save()
+            messages.success(request,"Password Change Successfully")
+            return redirect("loginPage")
+    return render(request,"changepassword.html")
+
+
+def applyPage(request,id):
+
+    
+    job=get_object_or_404(addjob_model, id=id)
+     
+    if request.method=="POST":
+        skills=request.POST.get("skills")
+        salary=request.POST.get("salary")
+        apply_resume=request.FILES.get("apply_resume")
+
+        if skills and salary and apply_resume:
+            user=request.user
+            
+            aplications=job_Apply_model.objects.create(job=job,aplicant=user,skills=skills,salary=salary,apply_resume=apply_resume)
+            aplications.save()
+            messages.success(request,"Apply Successfull")
+            return redirect("profilePage")
+
+
+    return render(request,"Jobseeker/applypage.html",{"job":job})
+
+def createdjob(request):
+    user=request.user
+    job=addjob_model.objects.filter(job_creator=user)
+    return render(request,"Recruiter/createjob.html",{"job":job})
+
+
+def Apliedjob(request):
+    user=request.user
+    job=job_Apply_model.objects.filter(aplicant=user)
+    return render(request,"Jobseeker/apliedjob.html",{"job":job})
+
+def Aplicant_view(request,id):
+    myjob=get_object_or_404(addjob_model,id=id)
+    job=job_Apply_model.objects.filter(job=myjob)
+    return render(request,"Recruiter/aplicant.html",{"job":job})

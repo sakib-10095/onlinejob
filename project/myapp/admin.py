@@ -11,5 +11,7 @@ admin.site.register(customUser,customUser_display)
 admin.site.register(addjob_model)
 admin.site.register(recruiterProfile)
 admin.site.register(jobseekerProfile)
+admin.site.register(job_Apply_model)
+
 
 
